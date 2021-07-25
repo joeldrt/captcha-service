@@ -1,0 +1,13 @@
+web:
+  image: nginx:latest
+  ports:
+    - "8080:80"
+  volumes:
+    - ./captcha-server:/code
+    - ./site.conf:/etc/nginx/conf.d/site.conf
+  links:
+    - php
+php:
+  build: ./php-fpm-gd
+  volumes:
+    - ./captcha-server:/code
